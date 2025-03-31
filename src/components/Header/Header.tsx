@@ -14,6 +14,7 @@ const Header: React.FC = () => {
           <div className="promo-text">
             <p className="blink">🔥 FASTEST RESULT 🔥</p>
             <p className="shine">💎 WIN UP TO 10 LAKHS 💎</p>
+
             <p className="flash">✨ TRUSTED BY MILLIONS ✨</p>
           </div>
         </div>
