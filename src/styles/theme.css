@@ -1,0 +1,23 @@
+:root {
+  /* Modern Color Palette */
+  --primary-dark: #0F172A;
+  --primary-light: #334155;
+  --accent-gold: #FFD700;
+  --accent-blue: #60A5FA;
+  --accent-purple: #A855F7;
+  --neon-pink: #EC4899;
+  
+  /* Gradients */
+  --gradient-main: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+  --gradient-accent: linear-gradient(45deg, var(--accent-gold), var(--neon-pink));
+  --gradient-button: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+  
+  /* Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFD700;
+  
+  /* Effects */
+  --glow-gold: 0 0 20px rgba(255, 215, 0, 0.4);
+  --glow-blue: 0 0 20px rgba(96, 165, 250, 0.4);
+  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.4);
+}

@@ -1,0 +1,135 @@
+.header {
+  background: linear-gradient(135deg, #1a1c2e, #2d1f3d);
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  /* Remove will-change and transform properties */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.logo-container {
+  width: 70px;
+  height: 70px;
+  /* Remove transform properties */
+  animation: float 3s ease-in-out infinite;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+}
+
+.header-title {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.header-title h1 {
+  color: #FFD700;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.promo-text {
+  margin-top: 10px;
+}
+
+.promo-text p {
+  color: white;
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+
+.blink-text {
+  color: #ff4d4d;
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: blink 1.5s infinite;
+}
+
+.marquee {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 10px;
+  overflow: hidden;
+  margin-top: 15px;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.marquee p {
+  color: #FFD700;
+  font-size: 1.1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  margin: 0;
+  display: inline-block;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 0;
+    /* Ensure header stays in normal document flow */
+    position: relative;
+  }
+
+  .header-content {
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  /* Disable all animations on mobile */
+  .logo-container,
+  .blink-text,
+  .marquee p {
+    animation: none;
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  .logo-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .header-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .marquee {
+    padding: 6px;
+    /* Prevent layout shifts */
+    height: auto;
+    position: relative;
+  }
+}
