@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import ResultsChart from '../admin/ResultsChart';
 import { AddResultForm } from '../admin/AddResultForm';

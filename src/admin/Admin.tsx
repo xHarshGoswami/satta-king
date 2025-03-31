@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ResultsChart from './ResultsChart';
 import { AddResultForm } from './AddResultForm';
 import AdminAuth from './AdminAuth';

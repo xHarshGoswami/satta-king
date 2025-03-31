@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { GAMES_LIST } from '../admin/AddResultForm';
+import waitingGif from '../assets/homeImages/wait.gif';
 import './Chart.css';
 
 interface GameData {
@@ -88,6 +89,13 @@ const Chart: React.FC = () => {
     }
   };
 
+  const renderResult = (result?: string) => {
+    if (!result || result === 'XX') {
+      return <img src={waitingGif} alt="Waiting" className="waiting-gif" />;
+    }
+    return result;
+  };
+
   if (isLoading) {
     return <div className="loading" aria-live="polite">Loading results...</div>;
   }
@@ -130,8 +138,12 @@ const Chart: React.FC = () => {
                       <span className="game-name">{game.name}</span>
                       <span className="game-time">{game.time}</span>
                     </td>
-                    <td className="result yesterday">{results[1]?.result || '-'}</td>
-                    <td className="result today">{results[0]?.result || 'Pending'}</td>
+                    <td className="result yesterday">
+                      {renderResult(results[1]?.result)}
+                    </td>
+                    <td className="result today">
+                      {renderResult(results[0]?.result)}
+                    </td>
                   </tr>
                 );
               })}

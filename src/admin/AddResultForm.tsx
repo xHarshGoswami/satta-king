@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
+import { useState } from 'react';
+import { collection, doc, setDoc, getDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import './AddResultForm.css';
 
@@ -112,7 +112,13 @@ const AddResultForm: React.FC<AddResultFormProps> = ({ editingId, onSuccess }) =
       editingId: null
     }))
   });
+  const [searchQuery, setSearchQuery] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Filter games based on search query
+  const filteredGames = formData.games.filter(game =>
+    game.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const validateInput = (value: string): boolean => {
     // Allow empty input for typing
@@ -231,8 +237,18 @@ const AddResultForm: React.FC<AddResultFormProps> = ({ editingId, onSuccess }) =
           />
         </div>
 
+        <div className="search-input">
+          <label>Search Games:</label>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by game name"
+          />
+        </div>
+
         <div className="games-grid">
-          {formData.games.map((game, index) => (
+          {filteredGames.map((game, index) => (
             <div key={game.name} className="game-input">
               <label>
                 {game.name}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import Header from '../../components/Header/Header';
@@ -6,6 +6,7 @@ import './Home.css';
 import Chart from '../../components/Chart';
 import AdminInfo from '../../components/AdminInfo';
 import Navigation from '../../components/Navigation/Navigation';
+import waitingGif from '../../assets/homeImages/wait.gif';
 
 // Important games to highlight
 const FEATURED_GAMES = [
@@ -31,6 +32,13 @@ interface MonthlyData {
   games: GameData[];
   lastUpdated?: string;
 }
+
+const renderResult = (result?: string) => {
+  if (!result || result === '-' || result === 'Pending' || result === 'XX') {
+    return <img src={waitingGif} alt="Waiting" className="waiting-gif" />;
+  }
+  return result;
+};
 
 const Home: React.FC = () => {
   const [featuredResults, setFeaturedResults] = useState<MonthlyData | null>(null);
@@ -86,11 +94,11 @@ const Home: React.FC = () => {
                   <div className="game-results">
                     <div className="result-row">
                       <span className="result-label">कल का रिजल्ट:</span>
-                      <span className="result-value">{results[1]?.result || '-'}</span>
+                      <span className="result-value">{renderResult(results[1]?.result)}</span>
                     </div>
                     <div className="result-row">
                       <span className="result-label">आज का रिजल्ट:</span>
-                      <span className="result-value">{results[0]?.result || 'Pending'}</span>
+                      <span className="result-value">{renderResult(results[0]?.result)}</span>
                     </div>
                   </div>
                 </div>

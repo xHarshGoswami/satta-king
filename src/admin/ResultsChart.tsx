@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { GAMES_LIST } from './AddResultForm';
@@ -35,6 +35,13 @@ const ResultsChart: React.FC = () => {
     day: string;
     result: string;
   } | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const filteredGames = useMemo(() => {
+    return GAMES_LIST.filter(game =>
+      game.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery]);
 
   const fetchResults = useCallback(async () => {
     if (!selectedYear || !currentMonth) return;
@@ -146,10 +153,19 @@ const ResultsChart: React.FC = () => {
             <option key={month} value={month}>{month}</option>
           ))}
         </select>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search games..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
       </div>
 
       <div className="table-container">
-        {GAMES_LIST.map(game => (
+        {filteredGames.map(game => (
           <div key={game.name} className="game-row">
             <div className="game-info">
               <div className="game-name">{game.name}</div>

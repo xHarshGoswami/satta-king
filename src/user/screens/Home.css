@@ -49,37 +49,53 @@
 }
 
 .game-card {
-  background: linear-gradient(145deg, #1e1f3a, #2d1f3d);
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 215, 0, 0.1);
+  background: rgba(26, 28, 46, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.game-card:hover {
+  transform: translateY(-2px);
 }
 
 .game-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+  margin-bottom: 12px;
 }
 
 .game-card-header h3 {
+  font-size: 1.4rem;
   color: #FFD700;
-  font-size: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   margin: 0;
-  font-weight: bold;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
 }
 
 .game-time {
-  color: #60A5FA;
-  font-size: 0.9rem;
-  padding: 4px 10px;
-  background: rgba(96, 165, 250, 0.1);
-  border-radius: 20px;
-  border: 1px solid rgba(96, 165, 250, 0.2);
+  font-size: 1.3rem;
+  color: rgb(255, 255, 255); /* Using RGB for pure white */
+  font-weight: bold;
+  background: rgb(242, 6, 6);
+  padding: 6px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  border: 1px solid rgb(0, 254, 0);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Increased text shadow for better contrast */
+}
+
+/* Make sure the color stays white in hover states */
+.game-card:hover .game-time {
+  color: rgb(255, 255, 255);
+}
+
+/* Ensure white color persists in mobile */
+@media (max-width: 768px) {
+  .game-time {
+    color: rgb(255, 255, 255) !important;
+  }
 }
 
 .game-results {
@@ -92,10 +108,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  margin: 8px 0;
+  padding: 8px;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 6px;
 }
 
 .result-row:hover {
@@ -103,24 +119,32 @@
 }
 
 .result-label {
-  color: #fff;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  color: #ffffff;
+  opacity: 0.9;
 }
 
 .result-value {
-  color: #FFD700;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: bold;
-  padding: 4px 12px;
-  background: rgba(255, 215, 0, 0.1);
-  border-radius: 6px;
+  color: #FFD700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   min-width: 60px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .result-value:empty::before {
   content: '-';
   color: rgba(255, 255, 255, 0.3);
+}
+
+.waiting-gif {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .play-button {
@@ -210,12 +234,12 @@
   }
 
   .game-card-header h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .game-time {
-    font-size: 0.8rem;
-    padding: 2px 8px;
+    font-size: 1.2rem;
+    padding: 4px 10px;
   }
 
   .game-results {
@@ -227,13 +251,18 @@
   }
 
   .result-label {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .result-value {
-    font-size: 1rem;
+    font-size: 1.6rem;
     padding: 2px 8px;
     min-width: 50px;
+  }
+
+  .waiting-gif {
+    width: 32px;
+    height: 32px;
   }
 
   .game-card:hover {
@@ -282,7 +311,8 @@
   }
 
   .game-time {
-    font-size: 0.75rem;
+    font-size: 1.1rem;
+    padding: 4px 8px;
   }
 
   .result-label {
